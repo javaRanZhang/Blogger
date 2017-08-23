@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.mapper.UserMapper">
+
+    <resultMap id="UserMap" type="com.lanou.bean.User">
+        <id column="id" property="id" />
+        <result column="title" property="title"/>
+        <result column="userId" property="userId"/>
+   </resultMap>
+    <!--可以封装一段比较固定的sql语句 方便后续的debug-->
+    <sql id="Base_sql">
+        id,title,userId
+    </sql>
+</mapper>
