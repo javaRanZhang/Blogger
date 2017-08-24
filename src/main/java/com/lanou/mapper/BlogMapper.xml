@@ -24,4 +24,16 @@
         INSERT INTO b_blog VALUES (NULL,#{title}, #{des}, #{content}, #{userId})
     </insert>
 
+    <delete id="deleteBlogById">
+        delete from b_blog where id = #{blogId}
+    </delete>
+
+    <update id="updateBlog">
+        update b_blog set title = #{title}, des = #{des}, content = #{content}
+    </update>
+
+    <select id="findLikeTitle" resultMap="BlogMap">
+      SELECT <include refid="Blog_sql"/> from b_blog where title
+        like CONCAT(CONCAT('%', #{title}), '%')
+    </select>
 </mapper>
