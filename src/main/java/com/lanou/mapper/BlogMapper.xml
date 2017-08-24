@@ -4,4 +4,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lanou.mapper.BlogMapper">
 
+    <resultMap id="BlogMap" type="com.lanou.bean.Blog">
+        <id column="id" property="id" />
+        <result column="title" property="title"/>
+        <result column="des" property="des"/>
+        <result column="content" property="content"/>
+        <result column="userId" property="userId"/>
+    </resultMap>
+    <!--可以封装一段比较固定的sql语句 方便后续的debug-->
+    <sql id="Blog_sql">
+        id,title,des,content
+    </sql>
+
+    <select id="findBlogByUserId" resultMap="BlogMap">
+        SELECT <include refid="Blog_sql"/> from b_blog where userId = #{userId}
+    </select>
+
+    <insert id="insertBlog">
+        INSERT INTO b_blog VALUES (NULL,#{title}, #{des}, #{content}, #{userId})
+    </insert>
+
 </mapper>
